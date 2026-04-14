@@ -1,0 +1,7 @@
+gradio
+groq
+modal
+python-dotenv
+requests
+pandas
+plotly
