@@ -2,6 +2,7 @@ gradio
 groq
 modal
 python-dotenv
+litellm
 requests
 pandas
 plotly
