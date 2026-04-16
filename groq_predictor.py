@@ -1,11 +1,9 @@
 import os
 import re
-from typing import Optional
 
 from litellm import completion
 
-from agents.preprocessor import Preprocessor
-from prompt_builder import PREFIX, QUESTION, build_prompt
+from prompt_builder import build_prompt
 
 
 def _extract_price(text: str) -> float:
@@ -27,25 +25,15 @@ def _extract_price(text: str) -> float:
     return float(match.group())
 
 
-def _reasoning_effort_for_model(model_name: str) -> Optional[str]:
-    # Keep token usage down for models where reasoning effort is meaningful.
-    return "low" if "gpt-oss" in (model_name or "") else None
-
-
-def predict_price(description: str) -> float:
+def predict_price(structured_description: str) -> float:
     model_name = os.getenv("PRICER_PREPROCESSOR_MODEL")
     if not model_name:
         raise ValueError("Missing PRICER_PREPROCESSOR_MODEL in environment.")
 
-    if not description or not description.strip():
-        raise ValueError("description must be a non-empty string.")
+    if not structured_description or not structured_description.strip():
+        raise ValueError("structured_description must be a non-empty string.")
 
-    # 1) Rewrite short input into the structured format your model was trained on.
-    preprocessor = Preprocessor(model_name=model_name, reasoning_effort=_reasoning_effort_for_model(model_name))
-    structured_product_text = preprocessor.preprocess(description.strip())
-
-    # 2) Create the price prediction prompt with stable output prefix.
-    prompt = build_prompt(structured_product_text)
+    prompt = build_prompt(structured_description.strip())
 
     # 3) Ask Groq for a strictly formatted answer.
     messages = [

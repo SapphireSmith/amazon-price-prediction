@@ -1,5 +1,5 @@
 import os
-from typing import Any, Optional
+from typing import Any
 
 import requests
 
@@ -12,14 +12,13 @@ def _get_url() -> str:
     )
 
 
-def predict_price(description: str) -> float:
-    if not description or not description.strip():
-        raise ValueError("description must be a non-empty string.")
+def predict_price(structured_description: str) -> float:
+    if not structured_description or not structured_description.strip():
+        raise ValueError("structured_description must be a non-empty string.")
 
     url = _get_url()
-    payload: dict[str, Any] = {"description": description.strip()}
+    payload: dict[str, Any] = {"description": structured_description.strip()}
 
-    # Modal cold starts can take a while; give a bit more time for Phase 1 models.
     resp = requests.post(url, json=payload, timeout=180)
     resp.raise_for_status()
     data = resp.json()
