@@ -11,60 +11,61 @@ from product_preprocessor import preprocess_description
 # --- structured examples (NO actual price sent to models) ---
 EXAMPLES = [
     [
-        """Title: STARMOON DOT-Certified Full Face Helmet
-Category: Motorcycle Helmets
-Brand: STARMOON
-Description: A lightweight, matte black full-face helmet offering DOT-approved protection with a built-in transparent sun visor.
-Details: Features an ABS shell, high-density ventilated liner, aerodynamic design, and UV-resistant topcoat for enhanced comfort and safety.""",
-        145.00,
+        """Title: VONADO Space Wars Colonial Viper MK1 Building Block Model
+Category: Building Sets
+Brand: VONADO
+Description: 604-piece ABS plastic spaceship building kit that allows kids to construct the iconic Space Wars Colonial Viper MK1 fighter.
+Details: Features smooth, durable bricks, QR-code instructions, and compatibility with other major building-brick brands for expanded play.""",
+        39.99,
     ],
     [
-        """Title: Compact Portable Foot Rest
-Category: Accessories
-Brand: EWH
-Description: A fold-able foot rest that elevates one foot for back and hip relief while standing or sitting.
-Details: Made from durable ABS, it measures 4in high, folds to 8½×4×¾ inches, and fits easily in a purse or pocket.""",
-        30.00,
-    ],
-    [
-        """Title: Inwalltech M525.1LCR 5 1/4" In-Wall LCR Speaker
-Category: Home Theater Audio
-Brand: Inwalltech
-Description: A 5 1/4" in-wall LCR speaker delivering 125 W of powerful, well-balanced sound for home theater use.
-Details: Features lightweight gold Apolymer-cone woofers, silk-dome tweeters for clear highs, easy drop-in installation, and paint-matchable grill for a discreet setup.""",
-        139.00,
-    ],
-    [
-        """Title: Rockford Fosgate P600X4 600-Watt 4-Channel Amplifier
-Category: Audio Amplifiers
-Brand: Rockford Fosgate
-Description: Powerful 4-channel amplifier delivering up to 600 W RMS for a full-range car audio system.
-Details: Features Class A/B circuitry, versatile 4- or bridged-channel operation, RCA inputs, onboard EQ with 45 Hz boost, and 1-year warranty.""",
-        339.00,
-    ],
-    [
-        """Title: Camoo Adjustable Gland Nut Wrench
-Category: Tools & Equipment
-Brand: Camoo
-Description: An adjustable wrench for hydraulic gland nuts from 1" to 3-3/4" with interchangeable 1/4" or 7/32" pin holes.
-Details: Features a 1/2" square drive, corrosion-resistant steel construction, and anti-wear design for heavy-duty use on construction and farm equipment.""",
-        18.00,
-    ],
-    [
-        """Title: Braven BRV-X/2 Rugged Waterproof Bluetooth Speaker
+        """Title: Panasonic KX-DECT 6.0 PLUS Digital Cordless Phone
 Category: Electronics
-Brand: Braven
-Description: A rugged, waterproof Bluetooth speaker that delivers powerful bass and crystal-clear highs for outdoor adventures.
-Details: 20 W output, 18-hour battery life, USB charging port, and IPX7 waterproof rating.""",
-        138.00,
+Brand: Panasonic
+Description: A single‑handset cordless phone with DECT 6.0 PLUS technology for clear, extended-range communication.
+Details: Includes a headset jack, non‑slip handset design, and eco‑friendly power‑saving mode.""",
+        79.2,
     ],
     [
-        """Title: Powerbuilt 2.5-Ton Low-Profile Fast Lift Floor Jack
-Category: Automotive Tools
-Brand: Powerbuilt
-Description: A compact 2.5-ton floor jack that lifts up to 19.5 inches with a 3-inch clearance for low-profile vehicles.
-Details: Features a dual-piston foot pump for quick, precise lifts, durable construction, and meets ASME standards with a one-year warranty.""",
-        300.00,
+        """Title: Bam France 2002XL Contoured Hightech 4/4 Violin Case
+Category: Musical Instruments
+Brand: Bam France
+Description: Ultra‑light, shock‑resistant case for 4/4 violins featuring a sleek black carbon‑look exterior and contoured interior for maximum protection.
+Details: 3.5‑lb, 30×12×9 in, three‑layer construction (AIREX, ABS, PVC), foam suspension, two bow holders, accessory pouch, and anti‑sk""",
+        713.0,
+    ],
+    [
+        """Title: Empava 24" Electric Single Wall Oven
+Category: Kitchen Appliances
+Brand: Empava
+Description: 24‑inch electric single wall oven with 10 cooking functions, built‑in convection, rotisserie, and a touch LED digital display.
+Details: Features a 2.3‑cubic‑foot capacity, stainless‑steel finish, 3200‑W power, ETL certification, and a 2‑year limited warranty.
+""",
+        654.14,
+    ],
+    [
+        """Title: Carbon Fiber Racing Steering Wheel with Nappa Leather for GR Supra A90
+Category: Automotive Accessories
+Brand: Akozon
+Description: A high‑performance steering wheel featuring a carbon fiber core, full Nappa leather finish, and a built‑in OLED display for real‑time data.
+Details: Equipped with paddle shifters, wireless OBD‑II connectivity, a flat‑bottomed D‑shaped design, and hand‑stitched leather, it offers speed, RPM, lap, and engine telemetry display in""",
+        447.74,
+    ],
+    [
+        """Title: BMW 335i/135i AC Compressor Kit
+Category: Automotive Parts
+Brand: BuyAutoParts
+Description: OEM‑grade AC compressor and component kit for BMW 335i, 335xi, 335is, 135i, and 135is models.
+Details: Includes compressor with clutch, drier, expansion valve, PAG oil, and O‑ring seals, built to OE standards with a 2‑year unlimited‑mileage warranty.""",
+        314.41,
+    ],
+    [
+        """Title: 4GB DDR2 1066MHz Desktop Memory Kit
+Category: Computer Components
+Brand: Komputerbay
+Description: Dual 2GB DDR2 1066MHz modules in a 4GB kit for desktop systems.
+Details: Heatspreaders on each DIMM, 240-pin PC2-8500, dual‑channel support, lifetime warranty.""",
+        80.34,
     ],
 ]
 
@@ -145,7 +146,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as app:
                     label="🔵 Frontier Model (groq/llama-3.3-70b-versatile)"
                 )
 
-            diff_out = gr.Number(label="📊 Price Difference")
+            diff_out = gr.Number(label="📊 Price Difference Between both models")
 
             btn.click(
                 fn=predict,
