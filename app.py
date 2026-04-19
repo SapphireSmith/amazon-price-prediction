@@ -142,7 +142,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as app:
                     label="🔴 Fine-tuned Model (meta-llama/Llama-3.2-3B)"
                 )
                 groq_out = gr.Number(
-                    label="🔵 Frontier Model (groq/openai/gpt-oss-20b)"
+                    label="🔵 Frontier Model (groq/llama-3.3-70b-versatile)"
                 )
 
             diff_out = gr.Number(label="📊 Price Difference")
