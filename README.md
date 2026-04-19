@@ -1,11 +1,10 @@
 ---
 title: Amazon Price Predictor
-emoji: 💰
-colorFrom: blue
-colorTo: purple
+emoji: 📈
+colorFrom: yellow
+colorTo: gray
 sdk: gradio
-sdk_version: "4.44.0"
-python_version: "3.10"
+sdk_version: 5.23.0
 app_file: app.py
 pinned: false
 ---
