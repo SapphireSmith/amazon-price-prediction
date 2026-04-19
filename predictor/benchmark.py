@@ -43,8 +43,8 @@ def create_benchmark_chart():
         title="Model Comparison (MAE ↓)",
         xaxis=dict(tickangle=-45),
         yaxis_title="Error",
-        width=1000,
-        height=700,
+        margin=dict(b=120),  # allow space for rotated x-axis labels
+        height=600,  # allow height to be responsive to width if needed, but keeping height to maintain aspect ratio
     )
 
     return fig

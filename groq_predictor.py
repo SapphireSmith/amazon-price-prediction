@@ -26,7 +26,8 @@ def _extract_price(text: str) -> float:
 
 
 def predict_price(structured_description: str) -> float:
-    model_name = os.getenv("PRICER_PREPROCESSOR_MODEL")
+    model_name = os.getenv("PRICER_PREPROCESSOR_MODEL", "groq/openai/gpt-oss-20b")
+    print(f"model_name={model_name}")
     if not model_name:
         raise ValueError("Missing PRICER_PREPROCESSOR_MODEL in environment.")
 
@@ -77,4 +78,3 @@ def predict_price(structured_description: str) -> float:
         raise ValueError(f"Groq completion returned no usable text. Response: {resp!r}")
 
     return _extract_price(text_to_parse)
-
