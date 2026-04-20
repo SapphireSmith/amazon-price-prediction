@@ -27,7 +27,7 @@ def _extract_price(text: str) -> float:
 
 def predict_price(structured_description: str) -> float:
     model_name = os.getenv("PRICER_PREPROCESSOR_MODEL", "groq/llama-3.3-70b-versatile")
-    print(f"model_name={model_name}")
+    # print(f"model_name={model_name}")
     if not model_name:
         raise ValueError("Missing PRICER_PREPROCESSOR_MODEL in environment.")
 

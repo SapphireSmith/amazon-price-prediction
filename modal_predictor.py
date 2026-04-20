@@ -18,7 +18,7 @@ def predict_price(structured_description: str) -> float:
         raise ValueError("structured_description must be a non-empty string.")
 
     prompt = build_prompt(structured_description.strip())
-    print(f"\n prompt={prompt}\n")
+    # print(f"\n prompt={prompt}\n")
     url = _get_url()
     payload: dict[str, Any] = {"description": prompt}
 

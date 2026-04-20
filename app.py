@@ -93,7 +93,7 @@ def predict(description):
         #     structured = description
         # else:
         structured = preprocess_description(description)
-        print(f"structured={structured}")
+        # print(f"structured={structured}")
     except Exception as e:
         return f"Error: {e}", f"Error: {e}", "N/A"
 
