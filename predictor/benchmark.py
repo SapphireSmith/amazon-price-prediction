@@ -16,7 +16,7 @@ BENCHMARK_RESULTS = [
     ("Claude 4.5 Sonnet", "frontier", 47.10),
     ("GPT 5.1", "frontier", 44.74),
     ("GPT 4.1 Nano (Fine-tuned)", "baseline", 75.91),
-    ("Deep Neural Network", "baseline", 46.49),
+    # ("Deep Neural Network", "baseline", 46.49),
     ("Base Llama 3.2 4 bit", "baseline", 110.72),
     ("Fine-tuned Lite", "your_model", 65.40),
     ("Fine-tuned Full", "your_model", 39.85),
