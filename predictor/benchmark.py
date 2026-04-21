@@ -3,13 +3,13 @@
 import plotly.graph_objects as go
 
 BENCHMARK_RESULTS = [
-    ("Constant", "baseline", 106.18),
-    ("Linear Regression", "baseline", 101.56),
-    ("NLP + LR", "baseline", 76.81),
-    ("Random Forest", "baseline", 72.28),
-    ("XGBoost", "baseline", 68.23),
-    ("Human (Ed)", "human", 87.62),
-    ("Neural Network", "baseline", 63.97),
+    # ("Constant", "baseline", 106.18),
+    # ("Linear Regression", "baseline", 101.56),
+    # ("NLP + LR", "baseline", 76.81),
+    # ("Random Forest", "baseline", 72.28),
+    # ("XGBoost", "baseline", 68.23),
+    # ("Human (Ed)", "human", 87.62),
+    # ("Neural Network", "baseline", 63.97),
     ("GPT 4.1 Nano", "frontier", 62.51),
     ("Grok 4.1 Fast", "frontier", 57.62),
     ("Gemini 3 Pro", "frontier", 50.54),
