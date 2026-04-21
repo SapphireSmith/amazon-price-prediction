@@ -159,4 +159,10 @@ with gr.Blocks(theme=gr.themes.Soft()) as app:
             gr.Markdown("### Model Performance Comparison (Lower MAE = Better)")
             chart = gr.Plot(value=create_benchmark_chart())
 
+            gr.Markdown("### 📊 Model Error Trend")
+            gr.Image("assets/model_predict_error.png")
+
+            gr.Markdown("### 🎯 Prediction vs Actual")
+            gr.Image("assets/model_prediction_result.png")
+
 app.launch()
