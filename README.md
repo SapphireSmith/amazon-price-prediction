@@ -40,4 +40,36 @@ The app includes a dedicated **Benchmark** tab that visualizes:
 A sleek, responsive UI built with Gradio's modern themes, featuring:
 *   **Example Gallery:** Quick-load curated examples to see the models in action.
 *   **Real-Time Difference Calculation:** Instant calculation of the delta between both models.
-*   **Visual Feedback:** Clear, color-coded indicators for different model outputs.
+*   **Visual Feedback:** Clear, color-coded indicators for different model outputs.
+
+---
+
+## 🏗️ Architecture Overview
+
+The project follows a modular "Agent-Inference" architecture designed to minimize noise and maximize prediction accuracy.
+
+### 1. The Preprocessing Layer (LiteLLM + Agent)
+Before any prediction occurs, the raw user input (often a messy copy-paste from an Amazon page) is passed to the **Preprocessing Agent** (`agents/preprocessor.py`). 
+*   **Role:** Acts as a data cleaner and structurer.
+*   **Logic:** Uses a dedicated system prompt to extract relevant features (Title, Brand, Category, Features) and discard irrelevant text (ASINs, shipping notes, etc.).
+*   **Engine:** Powered by **LiteLLM**, allowing for easy swapping of the underlying model (defaulting to Llama 3.2 or GPT-4o-mini).
+
+### 2. The Dual Inference Engine
+Once structured, the cleaned description is sent simultaneously to two distinct endpoints:
+
+#### **🔴 The Specialist (Fine-Tuned Llama 3.2-3B)**
+*   **Hosting:** Deployed as a serverless function on **Modal** (`modal_predictor.py`).
+*   **Training:** This model was fine-tuned on a curated dataset of Amazon products to understand the specific pricing correlations between product attributes and historical market values.
+*   **Advantage:** Low latency and high precision for its specific domain, despite being a much smaller model.
+
+#### **🔵 The Generalist (Frontier Llama 3.3-70B)**
+*   **Hosting:** Accessed via the **Groq** API (`groq_predictor.py`).
+*   **Capability:** A massive "Frontier" model that relies on its vast general knowledge and zero-shot reasoning to estimate prices.
+*   **Advantage:** Serves as the gold standard baseline to evaluate whether fine-tuning a smaller model can bridge the performance gap with massive LLMs.
+
+### 3. The Presentation Layer (Gradio)
+The results are orchestrated in `app.py`, which handles:
+*   **Asynchronous Calls:** Fetching predictions from both Modal and Groq.
+*   **Comparison Logic:** Calculating the price difference in real-time.
+*   **Visualization:** Rendering the Plotly benchmark charts from the `predictor/benchmark.py` module.
+
