@@ -72,4 +72,41 @@ The results are orchestrated in `app.py`, which handles:
 *   **Asynchronous Calls:** Fetching predictions from both Modal and Groq.
 *   **Comparison Logic:** Calculating the price difference in real-time.
 *   **Visualization:** Rendering the Plotly benchmark charts from the `predictor/benchmark.py` module.
+
+---
+
+## 🚀 Setup & Installation
+
+Follow these steps to get the AI Price Predictor running locally.
+
+### 1. Prerequisites
+*   **Python 3.10+**
+*   **Groq API Key:** Get it from the [Groq Console](https://console.groq.com/).
+*   **Modal Account:** Required if you want to deploy or call the fine-tuned model. Set up at [modal.com](https://modal.com/).
+
+### 2. Clone & Install
+```bash
+# Clone the repository
+git clone https://github.com/SapphireSmith/amazon-price-prediction.git
+cd amazon-price-prediction
+
+# Create and activate a virtual environment (optional but recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 3. Environment Configuration
+Create a `.env` file in the root directory by copying the `example.env` file:
+```bash
+cp example.env .env
+```
+Fill in the following essential variables:
+*   `GROQ_API_KEY`: Your personal Groq API key.
+*   `PRICER_PREPROCESSOR_MODEL`: The model used for structuring descriptions (e.g., `groq/llama-3.3-70b-versatile`).
+*   `MODAL_PRICE_API_URL`: The endpoint URL for your deployed Modal fine-tuned model.
+*   *Note: Other variables in `example.env` are related to Phase 1 (Fine-tuning) and are only necessary if you are re-training the model.*
+
 
