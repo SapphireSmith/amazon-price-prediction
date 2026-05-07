@@ -109,4 +109,31 @@ Fill in the following essential variables:
 *   `MODAL_PRICE_API_URL`: The endpoint URL for your deployed Modal fine-tuned model.
 *   *Note: Other variables in `example.env` are related to Phase 1 (Fine-tuning) and are only necessary if you are re-training the model.*
 
+---
+
+## 📖 Usage Instructions
+
+### 1. Launch the Application
+Start the Gradio web server by running:
+```bash
+python app.py
+```
+Once the server is running, open the URL provided in the terminal (usually `http://127.0.0.1:7860`) in your web browser.
+
+### 2. The Predict Tab
+This is the primary interface for real-time evaluation.
+*   **Input:** Paste a raw product description into the "Product Description" textbox.
+*   **Examples:** Scroll down to the "Examples" section and click on any row to instantly populate the input with curated product data.
+*   **Predict:** Click the **"Predict Price"** button. The app will:
+    1.  Structure the description using the Preprocessor Agent.
+    2.  Query both the Modal (Fine-tuned) and Groq (Frontier) models.
+    3.  Display the predicted prices and the absolute difference between them.
+*   **Actual Price:** If you use one of the provided examples, the app will also show the **"Actual Price"** for reference.
+
+### 3. The Benchmark Tab
+Switch to this tab to see the aggregate performance of the project.
+*   **Model Comparison:** View a Plotly bar chart comparing the Mean Absolute Error (MAE) across various models.
+*   **Visual Insights:** Review static charts (generated during evaluation phases) showing error trends and the correlation between predicted vs. actual prices.
+
+
 
